@@ -28,61 +28,68 @@ img {
 .profile {
     display: flex;
     justify-content: space-around;
-    min-width: 304px;
-    max-width: 75vw;
+    width: clamp(304px, 75vw, 650px);
     margin: 0 auto;
     padding: 1vw 1vh;
 } 
 
-/* Left side header*/
+/* Header - Right Side */
+
+.profile-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .profile-image > img {
-    border: 1vw #659f8f solid;
+    border: 0.8vw #659f8f solid;
     border-radius: 50%;
-    width: clamp(120px, 20vw, 240px);
+    width: clamp(100px, 14vw, 200px);
     height: auto;
 }
 
-/* Right side header */
+/* Header - Right Side */
 
 .profile-right {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    width: clamp(175px, 50vw, 700px);
+    width: 100%;
 }
 
-/* User settings */
+/* Right Side - User Settings */
+
 .profile-user-settings {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
 }
 
 .profile-user-name {
     font-weight: normal;
-    font-size: clamp(1.3rem, 3vw, 3.2rem);
+    font-size: clamp(1.3rem, 2.5vw, 3rem);
 }
 
 .profile-edit-btn {
     font-weight: bold;
     border: 1px solid lightgrey;
-    border-radius: 0.2em;
-    font-size: clamp(0.6rem, 1.6vw, 1.6rem);
-    padding: 0.5em 1em;
+    border-radius: 0.4em;
+    font-size: clamp(0.6rem, 1.5vw, 1.5rem);
+    padding: 0.3em 0.6em;
     cursor: pointer;
 }
 
 .profile-settings-btn {
     border: none;
     background-color: #fafafa;
-    font-size: clamp(1rem, , 2rem);
-    font-size: 2vw;
+    font-size: clamp(1rem, 2vw, 2rem);
     cursor: pointer;
 }
 */
+
+/* Right Side - Stats */
 
 .profile-stats {
     width: 100%;
@@ -98,44 +105,46 @@ img {
 
 .profile-stats ul li {
     padding: 0 1vw;
-    font-size: clamp(0.8rem, 2.1vw, 2.3rem);
+    font-size: clamp(0.8rem, 2.2vw, 1.6rem);
 }
 
-/* Profile Bio */
+/* Right Side - Profile Bio */
+
 .profile-bio {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    font-size: clamp(0.5rem, 1.3vw, 2rem);
+    font-size: clamp(0.6rem, 1.5vw, 1.4rem);
+}
+
+.profile-stats ul li:nth-child(n + 2) {
+    cursor: pointer;
 }
 
 /* Bold Font */
+
 .profile-stat-count,
 .profile-real-name,
 .visually-hidden {
     font-weight: bold;
 }
 
-/* Grid */
+/* Main */
 
 .gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1vw;
-    min-width: 304px;
-    max-width: 75vw;
+    width: clamp(304px, 75vw, 650px);
     margin: 0 auto;
-    padding: 1vh 2vw;
+    padding: 1vh 1vw;
 }
 
 .gallery-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
     position: relative;
     cursor: pointer;
 }
@@ -148,6 +157,10 @@ img {
 
 /* Icons */
 
+.visually-hidden {
+    display: none;
+}
+
 .gallery-item-type {
     position: absolute;
     top: 0;
@@ -155,30 +168,27 @@ img {
     color: #fafafa;
 }
 
-.visually-hidden {
-    display: none;
-}
-
 .gallery-item-type .fa-clone {
-    font-size: 3vw;
-    padding: 2vw;
+    font-size: 2vw;
+    padding: 1vw;
 }
 
-/* Inside grid */
+/* Likes and Comments */
+
+.gallery-item-info ul {
+    list-style: none;
+    display: flex;
+    gap: 1.2vw;
+    padding: 0;
+    margin: 0;
+}
 
 .gallery-item-info ul li {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.5vw;
-    font-size: 2vw;
-}
-.gallery-item-info ul {
-    list-style: none;
-    display: flex;
-    gap: 2vw;
-    padding: 0;
-    margin: 0;
+    gap: 0.4vw;
+    font-size: 1.3vw;
 }
 
 .gallery-item-info {
@@ -188,6 +198,11 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.gallery-item:hover .gallery-item-info {
+    opacity: 1;
 }
 
 .gallery-item::before {
@@ -197,10 +212,6 @@ img {
     position: absolute;
     background-color: #262626;
     opacity: 0;
-}
-
-.gallery-item:hover .gallery-item-info {
-    opacity: 1;
 }
 
 .gallery-item:hover::before {
@@ -218,16 +229,16 @@ img {
 
 .loader::after {
     content: "";
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background-color: transparent;
-    border: transparent 6px solid;
-    border-top: #659f6f 6px solid;
+    border: transparent 5px solid;
+    border-top: #659f6f 5px solid;
     border-radius: 50%;
-    animation: spinner 0.5s infinite linear;
+    animation: loader 0.5s infinite linear;
 }
 
-@keyframes spinner {
+@keyframes loader {
     from {
         rotate: 0deg;
     }
@@ -235,17 +246,4 @@ img {
         rotate: 360deg;
     }
     
-}
-
-/* Check screen sizes */
-
-@media all and (max-width: 319px) {
-    body {
-        background-color: red;
-    }
-}
-@media all and (min-width: 1368px) {
-    body {
-        background-color: red;
-    }
 }
